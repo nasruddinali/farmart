@@ -3,6 +3,33 @@ const path = require("path");
 const uplaodToS3 = require('../utils/aws')
 const shortid = require('shortid')
 
+
+const getById = async (req, res)=> {
+  try {
+    const id  = req.params.id;
+    const item = await File.findById(id);
+    if (!item) {
+      res.status(404).json({ message: 'Item not found' });
+      res.json(items);
+    } else {
+      res.json(item);
+    }
+    
+  } catch (error) {
+    res.status(500).json({ message: err.message });
+  }
+}
+const get = async (req, res)=> {
+  try {
+    const files = await File.find();
+    res.json(files)
+  } catch (error) {
+    res.status(500).json({ message: err.message });
+  }
+}
+const uploadPage = async (req, res)=>{
+  res.render("upload");
+}
 const uploadFile = async (req, res) => {
 
     try {
@@ -31,14 +58,8 @@ const uploadFile = async (req, res) => {
     }
   };
 
-const homePage = (req, res) => {
-  const indexPath = path.join(
-    __dirname,
-    "../../farmart/views",
-    "homepage.html"
-  );
-  res.status(200).sendFile(indexPath);
-  //  res.status(200).send("indexPath");
-};
+  const homePage = (req,res)=> {
+    res.render("index");
+  }
 
-module.exports = { uploadFile, homePage };
+module.exports = { uploadFile, homePage ,uploadPage,get,getById};
