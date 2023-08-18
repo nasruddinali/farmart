@@ -2,7 +2,6 @@ const express = require("express");
 const connectDB = require("./config/db");
 const fileRoutes = require("./routes/file.routes");
 const userRoutes = require("./routes/user.routes");
-const expressSession = require("express-session");
 
 const ejs = require("ejs");
 const path = require("path");
