@@ -10,8 +10,7 @@ Node.JS App to upload a file to and store short url
 - authentication
 
 ### Application uses
-- Express js
-- nodejs
+
 - Jason web token
 - mongoDB
 - HTML
@@ -53,9 +52,21 @@ User can login
 Hosting URL for uploading URL: http://13.126.252.141/api/v1/files/upload
 get all files URL: http://13.126.252.141/api/v1/files/get
 get file by Id URL:URL: http://13.126.252.141/api/v1/files/get:id
+login user: http://13.126.252.141/api/v1/users/login
+Registeer user: http://localhost:3000/api/v1/users/register
+
 
 
 ## TODO: 
-Implement Roles based authorisation
+- Implement Roles based authorisation
+- Making Front-end Better making whole app as a single web page.
+- showing files previews before dowwnloading
 
 
+##Tech used 
+- Node.JS and express
+    - There are a lot of free library/ package which come in handy
+    - Less effort is required
+    - Easy and simple to understand
+- MongoDB
+    - In this app we wanted to store data as file. which is unstructured;
