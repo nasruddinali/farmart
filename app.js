@@ -12,9 +12,9 @@ const router =express.Router()
 app.use(express.json())
 
 
-
-app.listen(3000, () => {
-  console.log("listning to port 3000");
+const port = process.env.PORT||3000;
+app.listen(port, () => {
+  console.log(`listning to port ${port}`);
 });
 app.use('/api/v1', fileRoutes);
 
