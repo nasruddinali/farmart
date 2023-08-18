@@ -56,4 +56,6 @@ get file by Id URL:URL: http://13.126.252.141/api/v1/files/get:id
 
 
 ## TODO: 
-host on public platform to share endpoint
+Implement Roles based authorisation
+
+
