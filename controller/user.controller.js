@@ -77,7 +77,7 @@ const login = async (req, res) => {
   res.status(200).json({ message: "Authentication successful", token });
 };
 function generateAccessToken(user){
-  jwt.sign(user, process.env.AUTH_SECRET_KEY, { expiresIn: "10s" })
+  jwt.sign({user}, process.env.AUTH_SECRET_KEY, { expiresIn: "10s" })
 }
 const findAllUser = async (req, res) => {
   try {
