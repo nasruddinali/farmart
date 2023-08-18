@@ -12,7 +12,7 @@ const router =express.Router()
 app.use(express.json())
 
 
-const port = 80;
+const port = process.env.PORT ;
 app.listen(port, () => {
   console.log(`listning to port ${port}`);
 });
