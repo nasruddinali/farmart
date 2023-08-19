@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Viewer</title>
+  </head>
+  <body>
+    <div class="file-list">
+      <ul id="file-list"></ul>
+      <button id="load-more">Load More</button>
+    </div>
+    <script>
+      const fileList = document.getElementById("file-list");
+      const loadMoreButton = document.getElementById("load-more");
+      let page = 1;
+
+      loadMoreButton.addEventListener("click", () => {
+        loadMoreButton.disabled = true;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", `/api/v1/files/findAll`, true);
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            var files = JSON.parse(xhr.responseText);
+            files = files['files'];
+            if (files.length === 0) {
+              loadMoreButton.disabled = true;
+              loadMoreButton.textContent = "No more files";
+              return;
+            }
+            const names = [];
+            files.forEach((file) => {
+                names.push(file.originalname);
+            });
+            names.forEach((file) => {
+                console.log(file);
+              const listItem = document.createElement("li");
+              listItem.textContent = file;
+              fileList.appendChild(listItem);
+            });
+
+            page++;
+            loadMoreButton.disabled = false;
+          }
+        };
+
+        xhr.send();
+      });
+
+      loadMoreButton.click(); // Load initial files
+    </script>
+  </body>
+</html>

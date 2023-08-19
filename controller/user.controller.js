@@ -4,42 +4,26 @@ const User = require("../models/User");
 var async = require("async");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-require('dotenv').config();
+require("dotenv").config();
 
-const loginForm = async(req, res)=> {
-  res.render("login")
-}
+const loginForm = async (req, res) => {
+  res.render("login");
+};
 
-const registerForm = async(req, res) =>{ 
-
+const registerForm = async (req, res) => {
   res.render("register");
-
-  // const indexPath = path.join(
-  //   __dirname,
-  //   "../../farmart/views",
-  //   "signup.html"
-  // );
-  // res.status(200).sendFile(indexPath);
-
-}
+};
 const register = async (req, res) => {
   const { name, username, password } = req.body;
 
   const email = username;
 
   try {
-    // Check if user with the same email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res
-        .status(400)
-        .json({ message: "User with this email already exists" });
+        return res.status(401).render('userExist');
     }
-
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create a new user
     const newUser = new User({
       name,
       email,
@@ -47,10 +31,10 @@ const register = async (req, res) => {
     });
 
     await newUser.save();
-    res.status(201).json({ message: "User registered successfully" });
+    res.status(201).render('login');
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "An error occurred" });
+    res.status(500).render('errorPage');
   }
 };
 
@@ -62,22 +46,21 @@ const login = async (req, res) => {
   // Find the user
   const user = await User.findOne({ email });
   if (!user) {
-    return res.status(401).json({ message: "Authentication failed" });
+    return res.status(401).render('userNotFound');
   }
-
   // Check password
   const isPasswordValid = await bcrypt.compare(password, user.password);
   if (!isPasswordValid) {
-    return res.status(401).json({ message: "Authentication failed" });
+    return res.status(401).render('errorPage');
   }
 
   // Generate JWT
-  const token = generateAccessToken( user._id );
+  const token = generateAccessToken(user._id);
 
-  res.status(200).json({ message: "Authentication successful", token });
+  res.status(200).render('filesHome');
 };
-function generateAccessToken(user){
-  jwt.sign({user}, process.env.AUTH_SECRET_KEY, { expiresIn: "10s" })
+function generateAccessToken(user) {
+  jwt.sign({ user }, process.env.AUTH_SECRET_KEY, { expiresIn: "10s" });
 }
 const findAllUser = async (req, res) => {
   try {
@@ -88,13 +71,36 @@ const findAllUser = async (req, res) => {
   }
 };
 
-const homePage = (req,res)=> {
-  res.render("index");
-}
 
-const logout = (req, res)=> {
+const logout = (req, res) => {
   req.logout();
-  res.send('Logged out');
+  res.send("Logged out");
+};
+const error = (req, res)=>{
+  res.render('home')
 }
+const exist = (req, res)=>{
+  res.render('userExist')
+}
+const notfound = (req, res)=>{
+  res.render('userNotFound')
+}
+const getUserById = (req, res)=>{
 
-module.exports = { register, login, findAllUser,registerForm, loginForm ,homePage,logout};
+}
+const home = (req, res)=> {
+  res.render('usersHome');
+}
+module.exports = {
+  register,
+  login,
+  findAllUser,
+  registerForm,
+  loginForm,
+  logout,
+  error,
+  exist,
+  notfound,
+  getUserById, 
+  home
+};

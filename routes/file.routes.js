@@ -6,11 +6,13 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 const authenticateToken = require('../middleware/auth').verifyToken;
 
-router.post("/files/upload", upload.single("file"), fileController.uploadFile);
-router.get("/files/upload", fileController.uploadPage)
-router.get("/home", fileController.homePage);
-router.get('/files/get/:id', fileController.getById);
-router.get('/files/get', fileController.get);
+router.get('/home', fileController.fileHome)
+router.post("/upload", upload.single("file"), fileController.uploadFile);
+router.get("/upload", fileController.uploadPage)
+router.get('/findById/:id', fileController.getById);
+router.get('/get/getbyidpage', fileController.getByIdPage);
+router.get('/findAll', fileController.get);
+router.get('/page', fileController.getallpage);
 
 
 
