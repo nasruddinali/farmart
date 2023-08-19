@@ -78,15 +78,12 @@
 
         try {
 
-          // Perform your search logic here
-          // For example, you can use AJAX to fetch search results based on the documentId
-          const searchResponse = await fetch(`/api/v1/findById/${documentId}`
+
+          const searchResponse = await fetch(`/api/v1/files/findById/${documentId}`
           
           );
           console.log(documentId)
           const searchResultData = await searchResponse.json();
-
-          // Update the search result display
           console.log(searchResultData);
           searchResult.innerHTML = `Search result for document ID ${documentId}: ${JSON.stringify(
             searchResultData
