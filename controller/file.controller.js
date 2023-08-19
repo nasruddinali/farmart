@@ -64,7 +64,6 @@ const uploadFile = async (req, res) => {
     await fileToSave.save();
     res.status(200).send({ originalname, location, shortUrl });
   } catch (err) {
-    a;
     console.error(err);
     res.status(500).json({ error: "An error occurred" });
   }

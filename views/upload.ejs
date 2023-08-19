@@ -1,64 +1,3 @@
-<!-- 
-
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>File Upload and API Response</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-        margin: 0;
-        padding: 0;
-      }
-
-      .container {
-        max-width: 400px;
-        margin: 20px auto;
-        padding: 20px;
-        background-color: #ffffff;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        text-align: center;
-      }
-
-      button {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 10px;
-      }
-
-      button:hover {
-        background-color: #0056b3;
-      }
-      #responseContainer {
-        margin-top: 20px;
-        padding: 10px;
-        background-color: #f5f5f5;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class=" container">
-        <h2>File Upload and API Response Form</h2>
-        <form action="/api/v1/files/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" placeholder="name" name="file" accept=".doc,.docx,.xml,.pdf,.txt"/>
-        <button type="submit" class="upload-button">Upload</button>
-       </form>
-    </div>
-
-  </body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -107,14 +46,13 @@
   </head>
   <body>
     <div class="container">
-      <h2>File Upload and API Response Form</h2>
+      <h2>File Upload</h2>
       <input type="file" name="file" id="file" />
       <input type="button" value="Upload" id="uploadButton" />
     </div>
     <div id="message"></div>
-    <!-- <script src="/uploadScript.js"></script> -->
     <script type ="text/javascript">
-      clearList();
+  
       document.getElementById("uploadButton").addEventListener("click", function () {
           
           var formData = new FormData();
