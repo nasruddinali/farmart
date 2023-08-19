@@ -20,19 +20,20 @@ Node.JS App to upload a file to and store short url
 2. npm run start
 
 ## APIS
-URL: http://localhost:3000/api/v1/home
-a home page which provides either login, ragister, and upload option
+User Home: http://localhost:3000/api/v1/usres/home<br\>
 
-method: GET    URL: http://localhost:3000/api/v1/files/upload / 
+a home page which provides either login, ragister. Upon logging in you will be sent to a page where you can do the intented file related tasks.
 
-renders api to upload file which accepts .pdf, .doc, .docx, .jpg,  jpeg.
+method: GET    URL: http://localhost:3000/api/v1/files/upload<br\>
+
+Renders api to upload file which accepts .pdf, .doc, .docx, .jpg,  jpeg.
 
 after uploading in response we get original name of the file, S3 Url, and short url 
-{
-    "originalname":"FarMart __ Full Stack Developer Assignment (1).pdf",
-    "location":"https://famart.s3.ap-south-1.amazonaws.com/1692364777958-%7BBagblvVmA-FarMart%20__%20Full%20Stack%20Developer%20Assignment%20%281%29.pdf",
-    "shortUrl":"http://famart.com/A09su1i_N"
-}
+{<br\>
+    - "originalname":"FarMart __ Full Stack Developer Assignment (1).pdf",<br\>
+    "location":"https://famart.s3.ap-south-1.amazonaws.com1692364777958-%7BBagblvVmA-FarMart%20__%20Full%20Stack%20Developer%20Assignment%20%281%29.pdf",<br\>
+    "shortUrl":"http://famart.com/A09su1i_N"<br\>
+}<br\>
 
 
 Read access to S3 url is public
@@ -49,11 +50,9 @@ all CRUD APIs for files
 User can register
 User can login
 
-Hosting URL for uploading URL: http://13.126.252.141/api/v1/files/upload
-get all files URL: http://13.126.252.141/api/v1/files/get
-get file by Id URL:URL: http://13.126.252.141/api/v1/files/get:id
-login user: http://13.126.252.141/api/v1/users/login
-Registeer user: http://localhost:3000/api/v1/users/register
+- Home Page for User : URL: http://35.154.231.225/api/v1/users/home
+- Home Page for file : http://35.154.231.225/api/v1/files/home
+- using these 2 URL we can navigate the system and can access app
 
 
 
