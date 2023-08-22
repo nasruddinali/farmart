@@ -3,70 +3,97 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>File Upload and API Response</title>
     <style>
       body {
         font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
         margin: 0;
         padding: 0;
+        background-color: #f0f0f0;
       }
 
       .container {
         max-width: 400px;
-        margin: 20px auto;
+        margin: 0 auto;
         padding: 20px;
         background-color: #ffffff;
         border: 1px solid #ccc;
         border-radius: 5px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
         text-align: center;
       }
 
+      form,
+      #userDetail {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label,
+      p {
+        margin-top: 10px;
+      }
+
+      input,
       button {
-        padding: 10px 20px;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      button {
+        padding: 10px;
         background-color: #007bff;
         color: #fff;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin-top: 10px;
+        transition: background-color 0.3s;
       }
 
       button:hover {
         background-color: #0056b3;
       }
-      #responseContainer {
-        margin-top: 20px;
-        padding: 10px;
-        background-color: #f5f5f5;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
     </style>
+    <title>Upload file</title>
   </head>
   <body>
     <div class="container">
-      <h2>File Upload</h2>
-      <input type="file" name="file" id="file" accept=".pdf, .doc, .docx, .jpg,  .jpeg" />
+      <h1>Upload File</h1>
+      <input
+        type="file"
+        name="file"
+        id="file"
+        accept=".pdf, .doc, .docx, .jpg,  .jpeg"
+      />
+
       <input type="button" value="Upload" id="uploadButton" />
     </div>
-    <div id="message"></div>
-    <script type ="text/javascript">
-  
-      document.getElementById("uploadButton").addEventListener("click", function () {
-          
+    <script>
+      document
+        .getElementById("uploadButton")
+        .addEventListener("click", function () {
           var formData = new FormData();
           var fileInput = document.getElementById("file");
           formData.append("file", fileInput.files[0]);
           var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/api/v1/files/upload", true);
-            
+          xhr.open("POST", "/api/v1/files/upload", true);
+
           xhr.onload = function () {
             console.log("here");
             if (xhr.status === 200) {
-              document.getElementById("message").innerHTML="File uploaded successfully!";
+              document.getElementById("message").innerHTML =
+                "File uploaded successfully!";
             } else {
-              document.getElementById("message").innerHTML="Error uploading file.";
+              document.getElementById("message").innerHTML =
+                "Error uploading file.";
             }
           };
           fileInput.value = null;
